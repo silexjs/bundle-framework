@@ -1,6 +1,6 @@
 {
 	"name": "silex-bundle-framework",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "[SILEX][BUNDLE] The basic framework (routing, templating, controller, ...)",
 	"author": "Valentin Allaire <valentin@sitexw.fr>",
 	"license": "MIT",
@@ -15,7 +15,7 @@
 	"dependencies": {
 		"spaceload": "<2.0.0",
 		"silex-component-routing": "0.0.x",
-		"bundle-http-server": "0.0.x"
+		"silex-bundle-http-server": "0.0.x"
 	},
 	"devDependencies": {},
 	"repository": {
