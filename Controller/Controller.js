@@ -1,4 +1,4 @@
-var RedirectResponse = USE('Silex.Component.Http.RedirectResponse');
+var RedirectResponse = USE('Silex.HttpServerBundle.Http.RedirectResponse');
 
 
 var Controller = function(container, request, response) {
