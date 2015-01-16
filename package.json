@@ -1,6 +1,6 @@
 {
 	"name": "silex-bundle-framework",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "[SILEX][BUNDLE] The basic framework (routing, templating, controller, ...)",
 	"author": "Valentin Allaire <valentin@sitexw.fr>",
 	"license": "MIT",

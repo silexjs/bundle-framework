@@ -12,16 +12,25 @@
 			],
 			"priority": 10
 		},
-		"silex.framework.events.http": {
-			"class": "Silex.FrameworkBundle.Events.EventsHttp",
+		"silex.framework.events.http.resolve_controller": {
+			"class": "Silex.FrameworkBundle.Events.EventHttpResolveController",
 			"arguments": [
-				{ "type": "service", "id": "kernel.container" },
-				{ "type": "service", "id": "kernel.dispatcher" }
+				{ "type": "service", "id": "kernel.container" }
 			],
 			"events": [
 				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": 10 },
-				{ "listener": "http.server.resolve_controller", "method": "onHttpServerResolveController", "priority": 0 },
-				{ "listener": "http.server.exception", "method": "onHttpServerException", "priority": 0 }
+				{ "listener": "http.server.resolve_controller", "method": "onResolveController", "priority": 0 }
+			],
+			"priority": 10
+		},
+		"silex.framework.events.http.exception": {
+			"class": "Silex.FrameworkBundle.Events.EventHttpException",
+			"arguments": [
+				{ "type": "service", "id": "kernel.container" }
+			],
+			"events": [
+				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": 10 },
+				{ "listener": "http.server.exception", "method": "onException", "priority": 0 }
 			],
 			"priority": 10
 		}
