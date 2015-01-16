@@ -1,0 +1,29 @@
+{
+	"services": {
+		"silex.framework.service": {
+			"class": "Silex.FrameworkBundle.Services.Framework",
+			"arguments": [
+				{ "type": "service", "id": "kernel.container" },
+				{ "type": "service", "id": "kernel.config" },
+				{ "type": "service", "id": "kernel.dispatcher" }
+			],
+			"events": [
+				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": -10 }
+			],
+			"priority": 10
+		},
+		"silex.framework.events.http": {
+			"class": "Silex.FrameworkBundle.Events.EventsHttp",
+			"arguments": [
+				{ "type": "service", "id": "kernel.container" },
+				{ "type": "service", "id": "kernel.dispatcher" }
+			],
+			"events": [
+				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": 10 },
+				{ "listener": "http.server.resolve_controller", "method": "onHttpServerResolveController", "priority": 0 },
+				{ "listener": "http.server.exception", "method": "onHttpServerException", "priority": 0 }
+			],
+			"priority": 10
+		}
+	}
+}

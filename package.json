@@ -1,0 +1,34 @@
+{
+	"name": "silex-bundle-framework",
+	"version": "0.0.1",
+	"description": "[SILEX][BUNDLE] The basic framework (routing, templating, controller, ...)",
+	"author": "Valentin Allaire <valentin@sitexw.fr>",
+	"license": "MIT",
+	"keywords": [
+		"framework",
+		"controller",
+		"routing",
+		"templating",
+		"silex",
+		"bundle"
+	],
+	"dependencies": {
+		"spaceload": "<2.0.0",
+		"silex-component-routing": "0.0.x",
+		"bundle-http-server": "0.0.x"
+	},
+	"devDependencies": {},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/silexjs/bundle-framework.git"
+	},
+	"bugs": {
+		"url": "https://github.com/silexjs/bundle-framework/issues"
+	},
+	"homepage": "https://github.com/silexjs/bundle-framework",
+	"autoload": {
+		"psr-4": {
+			"Silex\\FrameworkBundle": "./"
+		}
+	}
+}
