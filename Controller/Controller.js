@@ -36,6 +36,20 @@ Controller.prototype = {
 		var previous = previous || null;
 		
 	},
+	
+	get: function(name) {
+		return this.container.get(name);
+	},
+	
+	getORM: function() {
+		return this.get('orm');
+	},
+	getModel: function(name) {
+		if(this.getORM().models[name] === undefined) {
+			throw new Error('The model "'+name+'" does not exist');
+		}
+		return this.getORM().models[name];
+	},
 };
 
 
