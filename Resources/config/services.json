@@ -33,6 +33,17 @@
 				{ "listener": "http.server.error", "method": "onError", "priority": 0 }
 			],
 			"priority": 10
+		},
+		"silex.framework.templating.extensions": {
+			"class": "Silex.FrameworkBundle.Templating.Extensions",
+			"arguments": [
+				{ "type": "service", "id": "kernel" }
+			],
+			"events": [
+				{ "listener": "framework.routing.compile", "method": "onRoutingCompile", "priority": 50 },
+				{ "listener": "framework.templating.config", "method": "onTemplatingConfig", "priority": 50 }
+			],
+			"priority": 5
 		}
 	}
 }

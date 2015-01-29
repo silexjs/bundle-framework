@@ -18,7 +18,7 @@ EventHttpError.prototype = {
 			response.statusCode = e.statusCode;
 			if(e instanceof ErrorHttpNotFound === true) {
 				var pathname = require('url').parse(request.url).pathname;
-				this.container.get('templating').renderViewResponse('SilexFrameworkBundle:error:error-not-found.html.twig', { error: e, pathname: pathname }, request, response);
+				this.container.get('templating').renderViewResponse('SilexFrameworkBundle:error:error-404.html.twig', { error: e, pathname: pathname }, request, response);
 			}
 		} else if(e instanceof Error) {
 			response.statusCode = 500;
