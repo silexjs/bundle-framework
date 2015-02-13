@@ -9,8 +9,9 @@ EventHttpError.prototype = {
 	container: null,
 	templating: null,
 	
-	onKernelReady: function() {
+	onKernelReady: function(next) {
 		this.routing = this.container.get('routing');
+		next();
 	},
 	
 	onError: function(next, e, request, response) {
@@ -18,11 +19,11 @@ EventHttpError.prototype = {
 			response.statusCode = e.statusCode;
 			if(e instanceof ErrorHttpNotFound === true) {
 				var pathname = require('url').parse(request.url).pathname;
-				this.container.get('templating').renderViewResponse('SilexFrameworkBundle:error:error-404.html.twig', { error: e, pathname: pathname }, request, response);
+				this.container.get('templating').sendView('SilexFrameworkBundle:error:error-404.html.twig', { error: e, pathname: pathname }, request, response);
 			}
 		} else if(e instanceof Error) {
 			response.statusCode = 500;
-			this.container.get('templating').renderViewResponse('SilexFrameworkBundle:error:error.html.twig', { error: e }, request, response);
+			this.container.get('templating').sendView('SilexFrameworkBundle:error:error.html.twig', { error: e }, request, response);
 		}
 		next();
 	},

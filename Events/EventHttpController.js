@@ -5,8 +5,9 @@ EventHttpController.prototype = {
 	container: null,
 	routing: null,
 	
-	onKernelReady: function() {
+	onKernelReady: function(next) {
 		this.routing = this.container.get('routing');
+		next();
 	},
 	
 	onController: function(next, request, response) {

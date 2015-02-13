@@ -18,7 +18,7 @@
 				{ "type": "service", "id": "kernel.container" }
 			],
 			"events": [
-				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": 9 },
+				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": 10 },
 				{ "listener": "http.server.controller", "method": "onController", "priority": 0 }
 			],
 			"priority": 10
@@ -29,7 +29,7 @@
 				{ "type": "service", "id": "kernel.container" }
 			],
 			"events": [
-				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": 9 },
+				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": 10 },
 				{ "listener": "http.server.error", "method": "onError", "priority": 0 }
 			],
 			"priority": 10
