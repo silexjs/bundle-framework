@@ -17,19 +17,27 @@ Controller.prototype = {
 		parameters = parameters || {};
 		return this.container.get('templating').renderView(view, parameters);
 	},
-	sendView: function(view, parameters) {
+	sendView: function(view, parameters, status) {
 		parameters = parameters || {};
-		this.container.get('templating').sendView(view, parameters, this.request, this.response);
+		status = status || 200;
+		this.container.get('templating').sendView(view, parameters, status, this.request, this.response);
 		return this;
 	},
-	sendHtml: function(html, parameters) {
-		parameters = parameters || {};
-		this.container.get('templating').sendHtml(html, parameters, this.request, this.response);
+	sendText: function(text, status) {
+		status = status || 200;
+		this.container.get('templating').sendText(text, status, this.request, this.response);
 		return this;
 	},
-	sendJson: function(json, beautify) {
+	sendHtml: function(html, parameters, status) {
+		parameters = parameters || {};
+		status = status || 200;
+		this.container.get('templating').sendHtml(html, parameters, status, this.request, this.response);
+		return this;
+	},
+	sendJson: function(json, beautify, status) {
 		beautify = beautify || false;
-		this.container.get('templating').sendJson(json, beautify, this.request, this.response);
+		status = status || 200;
+		this.container.get('templating').sendJson(json, beautify, status, this.request, this.response);
 		return this;
 	},
 	

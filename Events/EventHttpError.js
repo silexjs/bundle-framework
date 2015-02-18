@@ -16,14 +16,12 @@ EventHttpError.prototype = {
 	
 	onError: function(next, e, request, response) {
 		if(e instanceof ErrorHttp) {
-			response.statusCode = e.statusCode;
 			if(e instanceof ErrorHttpNotFound === true) {
 				var pathname = require('url').parse(request.url).pathname;
-				this.container.get('templating').sendView('SilexFrameworkBundle:error:error-404.html.twig', { error: e, pathname: pathname }, request, response);
+				this.container.get('templating').sendView('SilexFrameworkBundle:error:error-404.html.twig', { error: e, pathname: pathname }, e.statusCode, request, response);
 			}
 		} else if(e instanceof Error) {
-			response.statusCode = 500;
-			this.container.get('templating').sendView('SilexFrameworkBundle:error:error.html.twig', { error: e }, request, response);
+			this.container.get('templating').sendView('SilexFrameworkBundle:error:error.html.twig', { error: e }, 500, request, response);
 		}
 		next();
 	},
