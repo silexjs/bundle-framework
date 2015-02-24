@@ -54,23 +54,25 @@ Controller.prototype = {
 		return this;
 	},
 	
-//	createNotFoundException: function(message, previous) {
-//		previous = previous || null;
-//		
-//	},
-	
 	get: function(name) {
 		return this.container.get(name);
 	},
 	
 	getORM: function() {
-		return this.get('orm');
+		return this.container.get('orm');
+	},
+	getODM: function() {
+		return this.container.get('odm');
 	},
 	getModel: function(name) {
-		if(this.getORM().models[name] === undefined) {
-			throw new Error('The model "'+name+'" does not exist');
-		}
-		return this.getORM().models[name];
+		return this.container.get('models')(name);
+	},
+	getHandler: function(namespace) {
+		return this.container.get('handlers')(namespace);
+	},
+	
+	getUser: function() {
+		return this.container.get('user')(this.request, this.response);
 	},
 };
 
