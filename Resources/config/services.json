@@ -13,6 +13,17 @@
 			],
 			"priority": 10
 		},
+		"silex.framework.form.service": {
+			"class": "Silex.FrameworkBundle.Services.Form",
+			"arguments": [
+				{ "type": "service", "id": "kernel.container" },
+				{ "type": "service", "id": "kernel.cache" }
+			],
+			"events": [
+				{ "listener": "kernel.ready", "method": "onKernelReady", "priority": -5 }
+			],
+			"priority": 10
+		},
 		"silex.framework.events.http.controller": {
 			"class": "Silex.FrameworkBundle.Events.EventHttpController",
 			"arguments": [
@@ -38,7 +49,8 @@
 		"silex.framework.templating.extensions": {
 			"class": "Silex.FrameworkBundle.Templating.Extensions",
 			"arguments": [
-				{ "type": "service", "id": "kernel" }
+				{ "type": "service", "id": "kernel.container" },
+				{ "type": "service", "id": "kernel.config" }
 			],
 			"events": [
 				{ "listener": "framework.routing.compile", "method": "onRoutingCompile", "priority": 50 },

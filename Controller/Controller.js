@@ -41,15 +41,14 @@ Controller.prototype = {
 		return this;
 	},
 	
-	generateUrl: function(route, variables, secure) {
+	generatePath: function(route, variables) {
 		variables = variables || {};
-		if(secure === undefined) { secure = false; }
-		return this.container.get('routing').generate(route, variables, secure);
+		return this.container.get('routing').generate(route, variables);
 	},
 	
 	redirect: function(url, status) {
 		status = status || 302;
-		var redirect = new RedirectResponse(request, response);
+		var redirect = new RedirectResponse(this.request, this.response);
 		redirect.redirect(url, status);
 		return this;
 	},
@@ -73,6 +72,10 @@ Controller.prototype = {
 	
 	getUser: function() {
 		return this.container.get('user')(this.request, this.response);
+	},
+	
+	getForm: function(namespace) {
+		return this.container.get('forms')(namespace);
 	},
 };
 

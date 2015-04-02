@@ -34,9 +34,11 @@ Framework.prototype = {
 	},
 	createTemplating: function() {
 		var serviceName = this.config.get('framework.templating.engine');
-		var templating = this.container.get(serviceName);
-		this.container.set('templating', templating);
-		this.dispatcher.dispatch('framework.templating.config', [templating]);
+		if(serviceName !== undefined) {
+			var templating = this.container.get(serviceName);
+			this.container.set('templating', templating);
+			this.dispatcher.dispatch('framework.templating.config', [templating]);
+		}
 	},
 	createModels: function() {
 		var self = this;
@@ -61,7 +63,6 @@ Framework.prototype = {
 	createHandlers: function() {
 		var self = this;
 		var models = this.container.get('models');
-		
 		this.container.set('handlers', function(namespace) {
 			var key = 'SilexFrameworkBundle.handlers.'+namespace;
 			var handler = self.cache.get(key);
