@@ -57,6 +57,13 @@
 				{ "listener": "framework.templating.config", "method": "onTemplatingConfig", "priority": 50 }
 			],
 			"priority": 5
+		},
+		"silex.framework.argv_parameters.service": {
+			"class": "Silex.FrameworkBundle.Services.ArgvParameters",
+			"arguments": [
+				{ "type": "service", "id": "kernel.config" }
+			],
+			"priority": -80
 		}
 	}
 }
