@@ -1,17 +1,19 @@
 var Routing = USE('Silex.Component.Routing.Routing');
 
 
-var Framework = function(container, config, dispatcher, cache) {
+var Framework = function(kernel, container, config, dispatcher, cache) {
 	this.container = container;
 	this.config = config;
 	this.dispatcher = dispatcher;
 	this.cache = cache;
+	this.debug = kernel.debug;
 };
 Framework.prototype = {
 	container: null,
 	config: null,
 	dispatcher: null,
 	cache: null,
+	debug: null,
 	
 	onKernelReady: function(next) {
 		this.createRouting();
@@ -67,9 +69,18 @@ Framework.prototype = {
 			var key = 'SilexFrameworkBundle.handlers.'+namespace;
 			var handler = self.cache.get(key);
 			if(handler === undefined) {
+				if(self.debug === true) {
+					var path = SPACELOAD.cachePrefix[namespace];
+					if(path !== undefined) {
+						SPACELOAD.cachePrefix[namespace] = undefined;
+						require.cache[path] = undefined;
+					}
+				}
 				handler = USE(namespace);
 				handler = new handler(models, self.container);
-				self.cache.set(key, handler);
+				if(self.debug === false) {
+					self.cache.set(key, handler);
+				}
 			}
 			return handler;
 		});

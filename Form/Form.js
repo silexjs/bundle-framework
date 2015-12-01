@@ -93,9 +93,9 @@ Form.prototype = {
 		}
 		var nextListLength = Object.keys(input.validators).length;
 		var nextListNow = 0;
-		var next = function(result) {
+		var next = function(result, forceValid) {
 			nextListNow++;
-			if(nextListNow !== -1 && (nextListNow === nextListLength || result === false)) {
+			if(forceValid === true || (nextListNow !== -1 && (nextListNow === nextListLength || result === false))) {
 				nextListNow = -1;
 				callback();
 			}
@@ -129,6 +129,12 @@ Form.prototype = {
 						}
 					})(input, validator, datasEnd, errorsEnd, next);
 				}
+			} else if(validatorName === 'notRequired') {
+				if(datasEnd[input.name] === '') {
+					next(true, true);
+					break;
+				}
+				next(true);
 			}
 		}
 	}
